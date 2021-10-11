@@ -12,11 +12,12 @@ class MoviesController < ApplicationController
 
     def update
         @movie = Movie.find(params[:id])
-        
 
-        @movie.update(movies_params)
-
-        redirect_to @movie
+        if @movie.update(movies_params)
+            redirect_to @movie, notice: "Movie successfully updated!"
+        else
+            render :edit
+        end
     end
     def new
         @movie =Movie.new
@@ -24,14 +25,19 @@ class MoviesController < ApplicationController
 
     def create
         @movie = Movie.new(movies_params)
-        @movie.save
-        redirect_to @movie
-    end
+        if @movie.save
+          redirect_to @movie, notice: "Movie successfully created!"
+        else
+          render :new
+        end
+      end
 
     def destroy
         @movie = Movie.find(params[:id])
-        @movie.destroy
-        redirect_to movies_url
+        movietitle = @movie.title
+        if @movie.destroy
+            redirect_to movies_url, alert: "Deleted #{movietitle}"
+        end
     end
 
 end
@@ -41,3 +47,4 @@ private
             permit(:title, :description, :rating, :released_on, :total_gross,
                     :director, :duration, :image_file_name)
     end
+

@@ -30,6 +30,9 @@
     <p>
       <%= @movie.duration%>
     </p>
+     <div class="reviews">
+      <%= link_to "Reviews (#{@movie.number_of_reviews})", movie_reviews_path(@movie) %>
+    </div>
     
   </div>
 </section>

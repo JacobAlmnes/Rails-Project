@@ -174,3 +174,6 @@ Movie.create!([
     image_file_name: "wonder-woman.png"
   }
 ])
+
+movie = Movie.find_by(title: "Wonder Woman")
+movie.review.create!(name: "Mithu", stars: 6, comment: "Whalla den kæba der er smø ass")
