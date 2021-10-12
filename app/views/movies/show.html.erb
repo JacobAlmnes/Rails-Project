@@ -24,15 +24,23 @@
         <td><%= total_gross(@movie) %></td>
       </tr>
     </table>
+
+    <div class="reviews">
+      <span class="stars">
+    <%= render "shared/stars", percent: @movie.stars_to_percentage %>
+  </span>
+      <%= link_to pluralize(@movie.reviews.size, "review"),
+                    movie_reviews_path(@movie) %>
+    </div>
+
     <p>
       <%= @movie.director%>
     </p>
     <p>
       <%= @movie.duration%>
     </p>
-     <div class="reviews">
-      <%= link_to "Reviews (#{@movie.number_of_reviews})", movie_reviews_path(@movie) %>
-    </div>
+  
+  
     
   </div>
 </section>
