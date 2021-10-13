@@ -1,5 +1,6 @@
 class Review < ApplicationRecord
   belongs_to :movie
+  belongs_to :user
 
 STARS = [1, 2, 3, 4, 5]
 
@@ -7,10 +8,11 @@ validates :stars, inclusion: {
   in: STARS,
   message: "must be between 1 and 5"
 }
-  validates :name, presence: true
   validates :comment, length: { minimum: 4 }
 
   def stars_to_percentage
     (stars/5.0)*100
   end
+
+  
 end

@@ -24,11 +24,14 @@
         <td><%= total_gross(@movie) %></td>
       </tr>
     </table>
-
+   <%= link_to 'Write a review', new_movie_review_path(@movie), class: "button" %>
     <div class="reviews">
       <span class="stars">
     <%= render "shared/stars", percent: @movie.stars_to_percentage %>
   </span>
+
+     
+    
       <%= link_to pluralize(@movie.reviews.size, "review"),
                     movie_reviews_path(@movie) %>
     </div>

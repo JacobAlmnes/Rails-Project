@@ -1,7 +1,7 @@
 class ReviewsController < ApplicationController
 
-    before_action :get_comment, only: [:destroy]
     before_action :current_movie
+    before_action :require_signin, only:[:create, :new, :destroy]
     def index
         @movie =current_movie
         @reviews = @movie.reviews
@@ -15,6 +15,8 @@ class ReviewsController < ApplicationController
     def create
         @movie = current_movie
         @review = @movie.reviews.new(review_params)
+        @review.user = current_user
+        
 
         if @review.save
             redirect_to movie_reviews_url(@movie), notice: "Thanks for you review"
@@ -36,14 +38,16 @@ end
 private 
     def review_params
         params.require(:review).
-            permit(:name, :comment, :stars)
+            permit(:comment, :stars)
     end
 
     def get_review
         @review = Review.find_by(id: params[:id])
     end 
 
+    
 
     def current_movie
         @movie = Movie.find(params[:movie_id])
     end
+
