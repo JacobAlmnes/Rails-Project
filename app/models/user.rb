@@ -20,5 +20,8 @@ class User < ApplicationRecord
   }
 
 
+    scope :by_name, ->{order("name asc")}
+    scope :not_admins, -> { by_name.where(admin: false) }
+
   
 end

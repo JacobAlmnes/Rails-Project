@@ -61,6 +61,15 @@
             <% end %>
           </ul>
         <% end %>
+
+      <% if @genres.present? %>
+        <h4>Genres</h4>
+        <ul>
+          <% @genres.each do |g| %>
+            <li><%= link_to  g.name, genre_path(g) %></li>
+          <% end %>
+        </ul>
+      <% end %>
       
       <% if current_user %>
         <div class="faves">

@@ -1,0 +1,13 @@
+<h1> <%= "#{@genre.name} movies"%> </h1>
+
+    <% if @movies.present? %>
+
+    <div class="favorite-movies">
+      <% @movies.each do |movie| %>
+      <div style="display:inline-block; width:300px; height: 100%;">
+        <%= link_to image_tag(movie.image_file_name), movie %>
+        <h2><%=movie.title%></h2>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
