@@ -18,4 +18,8 @@ module MoviesHelper
             pluralize(number_with_precision(movie.average_stars, precision: 1) , "star")
         end
     end
+
+    
+    
+    
 end

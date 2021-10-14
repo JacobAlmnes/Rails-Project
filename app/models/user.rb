@@ -1,6 +1,8 @@
 class User < ApplicationRecord
   has_secure_password
   has_many :reviews, dependent: :destroy
+  has_many :favorites, dependent: :destroy
+  has_many :liked_movies, through: :favorites, source: :movie
 
   validates :name, :email, presence: true
   validates :email, format: {
@@ -16,7 +18,6 @@ class User < ApplicationRecord
 
 
   }
-
 
 
   
